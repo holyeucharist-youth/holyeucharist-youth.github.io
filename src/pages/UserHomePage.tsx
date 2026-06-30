@@ -15,7 +15,6 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import { CheckCircle, Clock, MapPin, AlertCircle, RefreshCw, ClipboardList, X } from 'lucide-react';
@@ -197,10 +196,10 @@ export default function UserHomePage() {
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
           {/* Greeting */}
           <Box>
-            <Typography variant="h5" fontWeight={700} color="text.primary">
+            <Typography variant="h5" sx={{ fontWeight: 700 }} color="text.primary">
               Hi, {user?.name?.split(' ')[0] ?? 'there'}
             </Typography>
-            <Typography variant="body2" color="text.secondary" mt={0.5}>{today}</Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>{today}</Typography>
           </Box>
 
           {/* Today card */}
@@ -215,7 +214,7 @@ export default function UserHomePage() {
               <CardContent sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2, color: 'success.main' }}>
                   <CheckCircle size={18} />
-                  <Typography variant="body2" fontWeight={600} color="text.secondary">Today's Attendance</Typography>
+                  <Typography variant="body2" sx={{ fontWeight: 600 }} color="text.secondary">Today's Attendance</Typography>
                 </Box>
 
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 1, mb: 2 }}>
@@ -266,7 +265,7 @@ export default function UserHomePage() {
                 <Box sx={{ width: 64, height: 64, borderRadius: '50%', bgcolor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2 }}>
                   <ClipboardList size={30} color="#2563eb" />
                 </Box>
-                <Typography variant="h6" fontWeight={700} mb={0.5}>You haven't marked attendance today</Typography>
+                <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>You haven't marked attendance today</Typography>
                 {officeTime && (
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 3, color: 'text.secondary' }}>
                     <Clock size={13} />
@@ -288,8 +287,11 @@ export default function UserHomePage() {
         {/* ── Stats sidebar ── */}
         <Card>
           <CardHeader
-            title="This Month"
-            titleTypographyProps={{ variant: 'subtitle2', textTransform: 'uppercase', letterSpacing: 1 }}
+            title={
+              <Typography variant="subtitle2" sx={{ textTransform: 'uppercase', letterSpacing: 1 }}>
+                This Month
+              </Typography>
+            }
             sx={{ pb: 0 }}
           />
           <CardContent sx={{ pt: 1.5 }}>
@@ -313,7 +315,7 @@ export default function UserHomePage() {
                         borderRadius: 1.5,
                       }}
                     >
-                      <Typography variant="h5" fontWeight={700} sx={{ color: statNumColor[key], lineHeight: 1 }}>
+                      <Typography variant="h5" sx={{ fontWeight: 700, color: statNumColor[key], lineHeight: 1 }}>
                         {count}
                       </Typography>
                       <Typography variant="caption" color="text.secondary">{STATUS_LABEL[key]}</Typography>
@@ -332,7 +334,7 @@ export default function UserHomePage() {
         open={modalOpen}
         onClose={() => { setModalOpen(false); resetForm(); }}
         fullWidth maxWidth="sm"
-        PaperProps={{ sx: { borderRadius: 3 } }}
+        slotProps={{ paper: { sx: { borderRadius: 3 } } }}
       >
         <DialogTitle sx={{ fontWeight: 700, pr: 6 }}>
           Mark Attendance
@@ -360,7 +362,7 @@ export default function UserHomePage() {
 
             {/* Status toggle */}
             <Box>
-              <Typography variant="body2" fontWeight={600} mb={1}>Select Status</Typography>
+              <Typography variant="body2" sx={{ fontWeight: 600, mb: 1 }}>Select Status</Typography>
               <ToggleButtonGroup
                 exclusive
                 value={status}
@@ -393,7 +395,7 @@ export default function UserHomePage() {
                     {geoState.loading ? (
                       <Typography variant="body2" color="text.secondary">Getting location…</Typography>
                     ) : geoState.error ? (
-                      <Typography variant="body2" color="error.main" fontSize="0.8rem">{geoState.error}</Typography>
+                      <Typography variant="body2" color="error.main" sx={{ fontSize: '0.8rem' }}>{geoState.error}</Typography>
                     ) : geoState.accuracy !== undefined ? (
                       <Typography variant="body2">Captured · <strong>{Math.round(geoState.accuracy)}m</strong> accuracy</Typography>
                     ) : (

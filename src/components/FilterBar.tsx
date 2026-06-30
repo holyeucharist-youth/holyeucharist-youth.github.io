@@ -84,7 +84,7 @@ export default function FilterBar({ userOptions = [], onExport }: FilterBarProps
         <TextField
           type="date"
           size="small"
-          inputProps={{ max: todayIso() }}
+          slotProps={{ htmlInput: { max: todayIso() } }}
           value={filter.date}
           onChange={(e) => set({ date: e.target.value })}
           sx={{ width: 155 }}
@@ -107,18 +107,16 @@ export default function FilterBar({ userOptions = [], onExport }: FilterBarProps
         <>
           <TextField
             type="date" size="small" label="From"
-            inputProps={{ max: filter.to || todayIso() }}
+            slotProps={{ htmlInput: { max: filter.to || todayIso() }, inputLabel: { shrink: true } }}
             value={filter.from}
             onChange={(e) => set({ from: e.target.value })}
-            InputLabelProps={{ shrink: true }}
             sx={{ width: 155 }}
           />
           <TextField
             type="date" size="small" label="To"
-            inputProps={{ min: filter.from, max: todayIso() }}
+            slotProps={{ htmlInput: { min: filter.from, max: todayIso() }, inputLabel: { shrink: true } }}
             value={filter.to}
             onChange={(e) => set({ to: e.target.value })}
-            InputLabelProps={{ shrink: true }}
             sx={{ width: 155 }}
           />
           {userOptions.length > 0 && (

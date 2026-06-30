@@ -72,8 +72,11 @@ export default function AdminSidebar() {
                   <Icon size={15} />
                 </ListItemIcon>
                 <ListItemText
-                  primary={label}
-                  primaryTypographyProps={{ fontSize: '0.875rem', fontWeight: active ? 600 : 400 }}
+                  primary={
+                    <span style={{ fontSize: '0.875rem', fontWeight: active ? 600 : 400 }}>
+                      {label}
+                    </span>
+                  }
                 />
               </ListItemButton>
             </ListItem>

@@ -19,7 +19,7 @@ export default function Modal({ open, onClose, title, children }: ModalProps) {
       onClose={onClose}
       fullWidth
       maxWidth="sm"
-      PaperProps={{ sx: { borderRadius: 3, m: { xs: 0, sm: 2 }, width: '100%', maxHeight: '90vh' } }}
+      slotProps={{ paper: { sx: { borderRadius: 3, m: { xs: 0, sm: 2 }, width: '100%', maxHeight: '90vh' } } }}
     >
       {title && (
         <DialogTitle sx={{ pb: 1, pr: 6, fontWeight: 700, fontSize: '1.05rem' }}>

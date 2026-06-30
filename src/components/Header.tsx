@@ -43,7 +43,7 @@ export default function Header() {
           sx={{ display: 'flex', alignItems: 'center', gap: 1, textDecoration: 'none', color: 'white', mr: 3 }}
         >
           <CheckSquare size={18} color="#60a5fa" />
-          <Typography variant="body2" fontWeight={700} color="white" noWrap>
+          <Typography variant="body2" sx={{ fontWeight: 700 }} color="white" noWrap>
             Office Attendance
           </Typography>
         </Box>
@@ -62,7 +62,7 @@ export default function Header() {
               >
                 {user.name?.[0]?.toUpperCase() ?? '?'}
               </Avatar>
-              <Typography variant="caption" color="grey.300" fontWeight={500} sx={{ display: { xs: 'none', sm: 'block' }, maxWidth: 140 }} noWrap>
+              <Typography variant="caption" sx={{ color: 'grey.300', fontWeight: 500, display: { xs: 'none', sm: 'block' }, maxWidth: 140 }} noWrap>
                 {user.name}
               </Typography>
             </IconButton>
@@ -73,11 +73,11 @@ export default function Header() {
               onClose={() => setAnchor(null)}
               transformOrigin={{ horizontal: 'right', vertical: 'top' }}
               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-              PaperProps={{ sx: { mt: 0.5, minWidth: 210, borderRadius: 2, border: '1px solid', borderColor: 'divider' }, elevation: 4 }}
+              slotProps={{ paper: { elevation: 4, sx: { mt: 0.5, minWidth: 210, borderRadius: 2, border: '1px solid', borderColor: 'divider' } } }}
             >
               {/* User info */}
               <Box sx={{ px: 2, py: 1.5 }}>
-                <Typography variant="body2" fontWeight={700} noWrap>{user.name}</Typography>
+                <Typography variant="body2" sx={{ fontWeight: 700 }} noWrap>{user.name}</Typography>
                 <Typography variant="caption" color="text.secondary" noWrap>{user.email}</Typography>
               </Box>
               <Divider />
@@ -98,7 +98,7 @@ export default function Header() {
                       sx={{ fontSize: '0.875rem', gap: 1 }}
                     >
                       <ListItemIcon sx={{ minWidth: 28 }}><Icon size={14} /></ListItemIcon>
-                      <ListItemText primaryTypographyProps={{ fontSize: '0.875rem' }}>{label}</ListItemText>
+                      <ListItemText primary={<span style={{ fontSize: '0.875rem' }}>{label}</span>} />
                     </MenuItem>
                   ))}
                   <Divider />
@@ -107,7 +107,7 @@ export default function Header() {
 
               <MenuItem onClick={() => { setAnchor(null); signOut(); }} sx={{ color: 'error.main', gap: 1 }}>
                 <ListItemIcon sx={{ minWidth: 28, color: 'error.main' }}><LogOut size={14} /></ListItemIcon>
-                <ListItemText primaryTypographyProps={{ fontSize: '0.875rem', fontWeight: 600 }}>Sign out</ListItemText>
+                <ListItemText primary={<span style={{ fontSize: '0.875rem', fontWeight: 600 }}>Sign out</span>} />
               </MenuItem>
             </Menu>
           </>

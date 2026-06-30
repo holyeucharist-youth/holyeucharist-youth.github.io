@@ -42,7 +42,7 @@ function PanelHeader({ icon, title, action }: { icon: React.ReactNode; title: st
     <Box sx={{ bgcolor: 'grey.50', borderBottom: '1px solid', borderColor: 'divider', px: 2.5, py: 1.25, display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'space-between' }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         {icon}
-        <Typography variant="caption" fontWeight={700} textTransform="uppercase" letterSpacing={1} color="text.secondary">
+        <Typography variant="caption" sx={{ fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }} color="text.secondary">
           {title}
         </Typography>
       </Box>
@@ -133,7 +133,7 @@ export default function AdminUsersPage() {
       {/* Page header */}
       <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', px: 3, py: 1.5 }}>
         <Typography variant="caption" color="text.disabled">Admin › Users</Typography>
-        <Typography variant="h6" fontWeight={700}>User Management</Typography>
+        <Typography variant="h6" sx={{ fontWeight: 700 }}>User Management</Typography>
       </Box>
 
       <Box sx={{ flex: 1, px: 3, py: 3, display: 'flex', flexDirection: 'column', gap: 3, maxWidth: 900 }}>
@@ -142,7 +142,7 @@ export default function AdminUsersPage() {
         <Card variant="outlined">
           <PanelHeader icon={<UserPlus size={14} color="#6b7280" />} title="Add User" />
           <Box sx={{ p: 3 }}>
-            <Typography variant="body2" color="text.secondary" mb={2.5}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5 }}>
               Pre-register a user by email. They must sign in with this Google account.
             </Typography>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, alignItems: 'flex-end' }}>
@@ -182,7 +182,7 @@ export default function AdminUsersPage() {
             }
           />
           <Box sx={{ p: 3 }}>
-            <Typography variant="body2" color="text.secondary" mb={2.5}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5 }}>
               Upload a JSON array of <code style={{ background: '#f3f4f6', padding: '1px 4px', borderRadius: 4 }}>{'{ email, role, name? }'}</code> objects.
               Existing emails update their role. Max 500 users.
             </Typography>
@@ -252,7 +252,7 @@ export default function AdminUsersPage() {
                     {pagedUsers.map((u) => (
                       <TableRow key={u.email} hover>
                         <TableCell sx={cellSx}>
-                          <Typography variant="body2" fontWeight={600}>{u.name}</Typography>
+                          <Typography variant="body2" sx={{ fontWeight: 600 }}>{u.name}</Typography>
                           <Typography variant="caption" color="text.secondary">{u.email}</Typography>
                         </TableCell>
                         <TableCell sx={cellSx}>

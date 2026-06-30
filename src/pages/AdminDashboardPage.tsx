@@ -10,7 +10,6 @@ import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import Paper from '@mui/material/Paper';
 import { api } from '../lib/api';
 import { getPref, setPref } from '../lib/prefs';
 import { useFilterState } from '../components/FilterBar';
@@ -150,7 +149,7 @@ export default function AdminDashboardPage() {
       {/* Page header */}
       <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', px: 3, py: 1.5 }}>
         <Typography variant="caption" color="text.disabled">Admin › Reports</Typography>
-        <Typography variant="h6" fontWeight={700}>Attendance Reports</Typography>
+        <Typography variant="h6" sx={{ fontWeight: 700 }}>Attendance Reports</Typography>
       </Box>
 
       <FilterBar userOptions={userOptions} onExport={handleExport} />

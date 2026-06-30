@@ -1,6 +1,5 @@
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 
 type ScorecardVariant = 'total' | 'present' | 'late' | 'leave' | 'halfday' | 'absent';
 
@@ -58,7 +57,7 @@ export default function Scorecard({ label, value, variant = 'total', active = fa
         background: 'white',
       }}
     >
-      <Typography variant="h4" fontWeight={700} sx={{ color: numColor[variant], lineHeight: 1 }}>
+      <Typography variant="h4" sx={{ fontWeight: 700, color: numColor[variant], lineHeight: 1 }}>
         {value}
       </Typography>
       <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: 'block' }}>

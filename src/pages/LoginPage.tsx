@@ -78,10 +78,10 @@ export default function LoginPage() {
             >
               <CheckSquare size={32} />
             </Box>
-            <Typography variant="h5" fontWeight={700} color="text.primary">
+            <Typography variant="h5" sx={{ fontWeight: 700 }} color="text.primary">
               Office Attendance
             </Typography>
-            <Typography variant="body2" color="text.secondary" mt={0.5}>
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
               Sign in to mark your attendance
             </Typography>
           </Box>

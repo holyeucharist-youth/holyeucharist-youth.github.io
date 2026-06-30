@@ -34,7 +34,7 @@ function PanelHeader({ icon, title }: { icon: React.ReactNode; title: string }) 
   return (
     <Box sx={{ bgcolor: 'grey.50', borderBottom: '1px solid', borderColor: 'divider', px: 2.5, py: 1.25, display: 'flex', alignItems: 'center', gap: 1 }}>
       {icon}
-      <Typography variant="caption" fontWeight={700} textTransform="uppercase" letterSpacing={1} color="text.secondary">
+      <Typography variant="caption" sx={{ fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }} color="text.secondary">
         {title}
       </Typography>
     </Box>
@@ -105,7 +105,7 @@ export default function AdminConfigPage() {
       {/* Page header */}
       <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', px: 3, py: 1.5 }}>
         <Typography variant="caption" color="text.disabled">Admin › Configuration</Typography>
-        <Typography variant="h6" fontWeight={700}>System Configuration</Typography>
+        <Typography variant="h6" sx={{ fontWeight: 700 }}>System Configuration</Typography>
       </Box>
 
       <Box sx={{ flex: 1, px: 3, py: 3, display: 'flex', flexDirection: 'column', gap: 3, maxWidth: 720 }}>
@@ -121,16 +121,18 @@ export default function AdminConfigPage() {
                 <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2 }}>
                   <TextField label="Expected Login Time" type="time" value={timeForm.expectedLoginTime ?? ''}
                     onChange={(e) => setTimeForm((f) => ({ ...f, expectedLoginTime: e.target.value }))}
-                    InputLabelProps={{ shrink: true }} fullWidth />
-                  <TextField label="Grace Period (minutes)" type="number" inputProps={{ min: 0, max: 240 }}
+                    slotProps={{ inputLabel: { shrink: true } }} fullWidth />
+                  <TextField label="Grace Period (minutes)" type="number"
+                    slotProps={{ htmlInput: { min: 0, max: 240 } }}
                     value={timeForm.gracePeriodMinutes ?? ''}
                     onChange={(e) => setTimeForm((f) => ({ ...f, gracePeriodMinutes: parseInt(e.target.value) }))} fullWidth />
                   <TextField label="Expected Logout Time" type="time" value={timeForm.expectedLogoutTime ?? ''}
                     onChange={(e) => setTimeForm((f) => ({ ...f, expectedLogoutTime: e.target.value }))}
-                    InputLabelProps={{ shrink: true }} fullWidth />
+                    slotProps={{ inputLabel: { shrink: true } }} fullWidth />
                   <TextField label="Timezone" value={timeForm.timezone ?? ''}
                     onChange={(e) => setTimeForm((f) => ({ ...f, timezone: e.target.value }))} fullWidth />
-                  <TextField label="Min GPS Accuracy (meters)" type="number" inputProps={{ min: 1 }}
+                  <TextField label="Min GPS Accuracy (meters)" type="number"
+                    slotProps={{ htmlInput: { min: 1 } }}
                     value={timeForm.minGpsAccuracyMeters ?? ''}
                     onChange={(e) => setTimeForm((f) => ({ ...f, minGpsAccuracyMeters: parseInt(e.target.value) }))} fullWidth />
                 </Box>
@@ -138,7 +140,7 @@ export default function AdminConfigPage() {
                 {/* Geofencing toggle */}
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', bgcolor: 'grey.50', border: '1px solid', borderColor: 'divider', borderRadius: 2, px: 2.5, py: 1.5 }}>
                   <Box>
-                    <Typography variant="body2" fontWeight={600}>Geofencing</Typography>
+                    <Typography variant="body2" sx={{ fontWeight: 600 }}>Geofencing</Typography>
                     <Typography variant="caption" color="text.secondary">
                       {timeForm.geofencingEnabled
                         ? 'Employees must be within the office radius to mark attendance.'
@@ -159,7 +161,7 @@ export default function AdminConfigPage() {
 
                 {/* Working days */}
                 <Box>
-                  <Typography variant="body2" fontWeight={600} mb={1}>Working Days</Typography>
+                  <Typography variant="body2" sx={{ fontWeight: 600, mb: 1 }}>Working Days</Typography>
                   <ToggleButtonGroup
                     value={timeForm.workingDays ?? []}
                     onChange={(_, next: number[]) => setTimeForm((f) => ({ ...f, workingDays: next }))}
@@ -181,7 +183,7 @@ export default function AdminConfigPage() {
                     onClick={() => timeMutation.mutate(timeForm)}>
                     {timeMutation.isPending ? 'Saving…' : 'Save Changes'}
                   </MuiButton>
-                  {timeSaved && <Typography variant="body2" color="success.main" fontWeight={600}>Saved!</Typography>}
+                  {timeSaved && <Typography variant="body2" color="success.main" sx={{ fontWeight: 600 }}>Saved!</Typography>}
                   {timeMutation.isError && <Typography variant="body2" color="error.main">Save failed.</Typography>}
                 </Box>
               </Box>
@@ -193,7 +195,7 @@ export default function AdminConfigPage() {
         <Card variant="outlined">
           <PanelHeader icon={<MapPin size={14} color="#6b7280" />} title="Office Locations" />
           <Box sx={{ p: 3 }}>
-            <Typography variant="body2" color="text.secondary" mb={2.5}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5 }}>
               Stand at the office and tap "Add Current Location". The geofence radius is 100 m.
             </Typography>
             {locsQ.isLoading ? (
@@ -280,7 +282,8 @@ export default function AdminConfigPage() {
                 )}
                 <Divider sx={{ mb: 2.5 }} />
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, alignItems: 'center' }}>
-                  <TextField type="date" size="small" label="Date" InputLabelProps={{ shrink: true }}
+                  <TextField type="date" size="small" label="Date"
+                    slotProps={{ inputLabel: { shrink: true } }}
                     value={newHol.date} onChange={(e) => setNewHol((f) => ({ ...f, date: e.target.value }))}
                     sx={{ width: 155 }} />
                   <TextField size="small" label="Holiday name" placeholder="e.g. Christmas"
